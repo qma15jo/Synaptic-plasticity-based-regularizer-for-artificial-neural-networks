@@ -1,8 +1,9 @@
 function ann_with_masks(num_masks, num_hidden_layers, neurons_per_layer)
 
     % Kindly follow the latest Release... This code was developed from scratch
-    % to illustrate the Prospect Certainty method for data-driven models. It
-    % features a simple Multi-Layer Perceptron (MLP) with a randomly generated
+    % to illustrate the Synaptic plasticity-based regularizer for artificial 
+    % neural networks. 
+    % It features a simple Multi-Layer Perceptron (MLP) with a randomly generated
     % dataset. The final results reflect the model's simplicity and the
     % dataset's lack of coherence. However, this code is intended solely to
     % facilitate the reproducibility of the method.
