@@ -1,31 +1,13 @@
-function SingleWave()
-% Kindly follow the latest Release... This code was developed from scratch
-% to illustrate the Single Wave Optimality Principle with a randomly generated
-% dataset. This code is intended solely to
-% facilitate the reproducibility of the method.
-% 
-% If you utilize this code, please cite the following paper:
-% 
-% Qais Yousef, Pu Li. Synaptic plasticity-based regularizer for artificial 
-% neural networks, 29 March 2024, PREPRINT (Version 1) available at 
-% Research Square [https://doi.org/10.21203/rs.3.rs-4114689/v1]
-% 
-% Additionally, please note that a comprehensive, tested package will be
-% released soon.
-% 
-% Qais Yousef 
-% 06.01.2025
+function [M, totalUncertainty] = SingleWave(M)
 
     % Parameters
-    m = 5; % Number of rows
-    n = 5; % Number of columns
+    m = size(M,1); % Number of rows
+    n = size(M,2); % Number of columns
     c = 0.5; % Discount factor, 0 < c < 1
     maxGenerations = 100;
     populationSize = 50;
     
-    % Initialize matrix M with random values
-    M = rand(m, n);
-    
+   
     % Define uncertainty function
     p = @(x) abs(x - 0.5); % Example uncertainty function
     
@@ -35,7 +17,7 @@ function SingleWave()
     % Evolutionary Algorithm
     for j = 2:n
         % Initialize population for column j
-        P = rand(populationSize, m);
+        P = randi([0 1], populationSize, m);
         
         for gen = 1:maxGenerations
             % Evaluate fitness
@@ -67,7 +49,7 @@ function SingleWave()
                 end
                 % Mutation
                 if rand < 0.2 % Mutation probability
-                    newP(end+k, randi([1, m])) = rand;
+                    newP(end+k, randi([1, m])) = randi([0 1]);
                 end
             end
             P = [selectedP; newP((populationSize/2)+1:end, :)];
@@ -91,11 +73,11 @@ function SingleWave()
     disp('Total Uncertainty:');
     disp(totalUncertainty);
     
-    % Plot convergence curve
-    figure;
-    plot(1:maxGenerations, convergence, 'LineWidth', 2);
-    title('Convergence Curve');
-    xlabel('Generation');
-    ylabel('Total Uncertainty');
-    grid on;
+    % % Plot convergence curve
+    % figure;
+    % plot(1:maxGenerations, convergence, 'LineWidth', 2);
+    % title('Convergence Curve');
+    % xlabel('Generation');
+    % ylabel('Total Uncertainty');
+    % grid on;
 end
